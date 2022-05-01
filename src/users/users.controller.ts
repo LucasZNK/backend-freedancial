@@ -22,7 +22,7 @@ export class UsersController {
 
   @Get()
   @ApiCreatedResponse({ type: User, isArray: true })
-  getUsers(): User[] {
+  getUsers() {
     return this.userService.getUsers();
   }
 
@@ -32,8 +32,9 @@ export class UsersController {
   })
   @Get(':id')
   // pipes for tranformation ParseIntPipe @Param('id'), ParseIntPipe) id :number
-  getUserById(@Param('id') id: string): User {
-    const user = this.userService.getUserById(id);
+  getUserById(@Param('id') id: string): Promise<User> {
+    //TODO: fix this, add support for id
+    const user = this.userService.findOne({ id: id });
 
     if (!user) {
       throw new NotFoundException();
