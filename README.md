@@ -50,6 +50,12 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Swagger Documentation
+
+Start the application and go to http://localhost:3000/docs for the API swagger documentation.
+
+Or also go to {TODO: add prod documentation link}
+
 ## Test
 
 ```bash
