@@ -1,10 +1,3 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
@@ -32,13 +25,25 @@
 $ npm install
 ```
 
+## Configuration
+
+Create a dev.env && prod.env file inside /env folder with the same structure as local.env file. Replace the string with your current database connection for each case.
+
+Example
+
+dev.env
+
+```bash
+DATABASE_CONNECTION = 'YOUR_MONGODB URI'
+```
+
 ## Running the app
 
 ```bash
-# development
-$ npm run start
+# local
+$ npm run start:local
 
-# watch mode
+# development
 $ npm run start:dev
 
 # production mode
@@ -64,9 +69,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Author - [Lucas Zanek](https://www.linkedin.com/in/lucaszanek/)
 - Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Twitter - [@nestframework](https://twitter.com/ZNKatz)
 
 ## License
 
