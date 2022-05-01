@@ -1,4 +1,4 @@
-import { User } from './entities/user.entity';
+import { User } from './schemas/user.schema';
 import { CreateUserDto } from './dto/create-user-dto';
 import { UsersService } from './users.service';
 import {
@@ -44,7 +44,8 @@ export class UsersController {
   @ApiCreatedResponse({ type: User })
   @ApiBadRequestResponse()
   @Post()
-  createUser(@Body() body: CreateUserDto): any {
-    return this.userService.createUser(body);
+  async createUser(@Body() body: CreateUserDto): Promise<User> {
+    const user = await this.userService.createUser(body);
+    return user;
   }
 }

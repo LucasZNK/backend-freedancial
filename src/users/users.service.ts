@@ -1,9 +1,13 @@
-import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user-dto';
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { User, UserDocument } from './schemas/user.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+
   getUsers(): User[] {
     return [{ id: '123', name: 'asd' }];
   }
@@ -11,7 +15,10 @@ export class UsersService {
   getUserById(id: string): User {
     return { id, name: 'asd' };
   }
-  createUser(createUserDto: CreateUserDto) {
-    return [createUserDto];
+
+  async createUser(createUserDto: CreateUserDto): Promise<User> {
+    const newUser = await this.userModel.create(createUserDto);
+
+    return newUser;
   }
 }
