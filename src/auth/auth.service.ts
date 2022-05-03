@@ -16,6 +16,7 @@ export class AuthService {
       throw new NotFoundException();
     }
 
+    // TODO: add bcrypt and encript password
     if (user.password === password) {
       const { username, email } = user;
       return {
@@ -29,7 +30,6 @@ export class AuthService {
 
   async login(user) {
     const payload = { email: user.email, username: user.username };
-    console.log(payload);
 
     return {
       access_token: this.jwtSerive.sign(payload),
