@@ -12,9 +12,8 @@ export class UsersService {
     return [{ id: '123', name: 'asd' }];
   }
 
-  async findOne(tofind): Promise<User | undefined> {
-    console.log(tofind);
-    const userFound = await this.userModel.findOne(tofind);
+  async findOne(valuePropertyToSearch): Promise<User | undefined> {
+    const userFound = await this.userModel.findOne(valuePropertyToSearch);
     return userFound;
   }
 
@@ -22,8 +21,6 @@ export class UsersService {
     const userNameAlreadyUsed = await this.findOne({
       username: createUserDto.username,
     });
-
-    console.log(userNameAlreadyUsed);
 
     const emailAlreadyUsed = await this.findOne({ email: createUserDto.email });
 
@@ -38,8 +35,6 @@ export class UsersService {
         message: 'Email already used',
       });
     }
-
-    console.log(createUserDto);
 
     const newUser = await this.userModel.create(createUserDto);
     return newUser;
