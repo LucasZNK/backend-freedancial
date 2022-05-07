@@ -3,6 +3,7 @@ import { ConflictException, Injectable, UseGuards } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './schemas/user.schema';
 import { Model } from 'mongoose';
+import { hashPassword } from 'src/utils/bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -36,7 +37,8 @@ export class UsersService {
       });
     }
 
-    const newUser = await this.userModel.create(createUserDto);
+    const password = await hashPassword(createUserDto.password);
+    const newUser = await this.userModel.create({ ...createUserDto, password });
     return newUser;
   }
 }

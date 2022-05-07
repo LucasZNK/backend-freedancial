@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
+import { comparePassword } from 'src/utils/bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -16,8 +17,9 @@ export class AuthService {
       throw new NotFoundException();
     }
 
-    // TODO: add bcrypt and encript password
-    if (user.password === password) {
+    const isPasswordValid = comparePassword(password, user.password);
+
+    if (isPasswordValid) {
       const { username, email } = user;
       return {
         username,
